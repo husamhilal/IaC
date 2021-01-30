@@ -1,0 +1,29 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "deployBastion": {
+            "value": true
+        },
+        "virtualNetworkName": {
+            "value": "VNet-Test"
+        },
+        "bastionName": {
+            "value": "AzBastion"
+        },
+        "bastionSubnetAddressRange": {
+            "value": "10.10.10.0/26"
+        },
+        "bastionPublicIpName": {
+            "value": "BastionIP"
+        },
+        "bastionSubnetNetworkSecurityGroupName": {
+            "value": "BastionSubnetNSG"
+        },
+        "onPremisesIPAddresses": {
+            "value": [
+                "0.0.0.0/0"
+            ]
+        }
+    }
+}
