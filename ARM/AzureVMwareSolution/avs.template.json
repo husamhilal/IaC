@@ -1,0 +1,59 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "type": "String"
+        },
+        "location": {
+            "type": "String"
+        },
+        "sku": {
+            "type": "String",
+            "defaultValue": "av36"
+        },
+        "hosts": {
+            "type": "Int",
+            "defaultValue": 3
+
+        },
+        "vcenterPassword": {
+            "type": "SecureString"
+        },
+        "nsxtPassword": {
+            "type": "SecureString"
+        },
+        "networkBlock": {
+            "type": "String",
+            "defaultValue": "10.210.0.0/22"
+        },
+        "tags": {
+            "type": "Object",
+            "metadata": {
+                "description": "The map of key-value pairs used to tag the resource"
+            }
+        }
+    },
+    "variables": {
+    },
+    "resources": [
+        {
+            "type": "Microsoft.AVS/privateClouds",
+            "apiVersion": "2020-03-20",
+            "name": "[parameters('name')]",
+            "location": "[parameters('location')]",
+            "tags": "[parameters('tags')]",
+            "sku": {
+                "name": "[parameters('sku')]"
+            },
+            "properties": {
+                "managementCluster": {
+                    "clusterSize": "[parameters('hosts')]"
+                },
+                "networkBlock": "[parameters('networkBlock')]",
+                "vcenterPassword": "[parameters('vcenterPassword')]",
+                "nsxtPassword": "[parameters('nsxtPassword')]"
+            }
+        }
+    ]
+}
