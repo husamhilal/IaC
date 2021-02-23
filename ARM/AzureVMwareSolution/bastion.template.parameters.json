@@ -1,0 +1,32 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "name": {
+            "value": "AVS-SDDC-LAB"
+        },
+        "location": {
+            "value": "northcentralus"
+        },
+        "sku": {
+            "value": "av36"
+        },
+        "hosts": {
+            "value": 3
+        },
+        "vcenterPassword": {
+            "value": null
+        },
+        "nsxtPassword": {
+            "value": null
+        },
+        "networkBlock": {
+            "value": "10.210.0.0/22"
+        },
+        "tags": {
+            "value": {
+                "Purpose": "SDDC"
+            }
+        }
+    }
+}
