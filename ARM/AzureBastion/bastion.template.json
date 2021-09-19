@@ -23,6 +23,13 @@
                 "description": "Name of Azure Bastion Instance."
             }
         },
+        "bastionHostSku": {
+            "type": "string"
+            "defaultValue": "Basic",
+            "metadata": {
+                "description": "SKU of Azure Bastion (Basic or Standard)"
+            }
+        },
         "bastionSubnetAddressRange": {
             "type": "string",
             "defaultValue": "10.10.10.0/26",
@@ -127,7 +134,7 @@
             "condition": "[parameters('deployBastion')]",
             "name": "[parameters('bastionSubnetNetworkSecurityGroupName')]",
             "type": "Microsoft.Network/networkSecurityGroups",
-            "apiVersion": "2020-07-01",
+            "apiVersion": "2021-02-01",
             "location": "[parameters('location')]",
             "properties": {
                 "securityRules": "[variables('bastionNSGsecurityRules')]"
@@ -138,7 +145,7 @@
             "condition": "[parameters('deployBastion')]",
             "name": "[concat(parameters('virtualNetworkName'),'/AzureBastionSubnet')]",
             "type": "Microsoft.Network/virtualNetworks/subnets",
-            "apiVersion": "2020-07-01",
+            "apiVersion": "2021-02-01",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('bastionSubnetNetworkSecurityGroupName'))]"
             ],
@@ -152,7 +159,7 @@
         {
             "condition": "[parameters('deployBastion')]",
             "type": "Microsoft.Network/publicIpAddresses",
-            "apiVersion": "2020-07-01",
+            "apiVersion": "2020-08-01",
             "name": "[parameters('bastionPublicIpName')]",
             "location": "[parameters('location')]",
             "sku": {
@@ -166,8 +173,11 @@
         {
             "condition": "[parameters('deployBastion')]",
             "type": "Microsoft.Network/bastionHosts",
-            "apiVersion": "2020-07-01",
+            "apiVersion": "2020-11-01",
             "name": "[parameters('bastionName')]",
+            "sku": {
+                "name": "[parameters('bastionHostSku')]"
+            },
             "location": "[parameters('location')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets',parameters('virtualNetworkName'),'AzureBastionSubnet')]",
