@@ -24,7 +24,7 @@
             }
         },
         "bastionHostSku": {
-            "type": "string"
+            "type": "string",
             "defaultValue": "Basic",
             "metadata": {
                 "description": "SKU of Azure Bastion (Basic or Standard)"
