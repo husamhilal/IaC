@@ -158,8 +158,8 @@
         },
         {
             "condition": "[parameters('deployBastion')]",
-            "type": "Microsoft.Network/publicIpAddresses",
-            "apiVersion": "2020-08-01",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2021-02-01",
             "name": "[parameters('bastionPublicIpName')]",
             "location": "[parameters('location')]",
             "sku": {
@@ -173,7 +173,7 @@
         {
             "condition": "[parameters('deployBastion')]",
             "type": "Microsoft.Network/bastionHosts",
-            "apiVersion": "2020-11-01",
+            "apiVersion": "2021-02-01",
             "name": "[parameters('bastionName')]",
             "sku": {
                 "name": "[parameters('bastionHostSku')]"
